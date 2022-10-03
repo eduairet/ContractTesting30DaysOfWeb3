@@ -1,27 +1,15 @@
-pragma solidity >=0.8.0 <0.9.0;
-//SPDX-License-Identifier: MIT
-
-import "hardhat/console.sol";
-// import "@openzeppelin/contracts/access/Ownable.sol"; 
-// https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.7.0 <0.9.0;
 
 contract YourContract {
 
-  event SetPurpose(address sender, string purpose);
+  string public myIntro = "Hi, I'm Eduardo";
 
-  string public purpose = "Building Unstoppable Apps!!!";
-
-  constructor() payable {
-    // what should we do on deploy?
+  function setIntro( string memory intro ) public {
+    myIntro = intro;
+  }
+  function getIntro() public view returns( string memory ) {
+    return myIntro;
   }
 
-  function setPurpose(string memory newPurpose) public {
-      purpose = newPurpose;
-      console.log(msg.sender,"set purpose to",purpose);
-      emit SetPurpose(msg.sender, purpose);
-  }
-
-  // to support receiving ETH by default
-  receive() external payable {}
-  fallback() external payable {}
 }
